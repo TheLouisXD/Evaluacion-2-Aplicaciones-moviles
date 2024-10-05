@@ -85,8 +85,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (etRut.length() == 0) {
-            etRut.setError("Rut invalido");
+
+            etRut.setError("Debe ingresar su rut");
             return false;
+
+        } else {
+
+            String inputText = etRut.getText().toString();
+
+            // Verficamos que los numeros ingresados en el rut sigan el fomato requerido
+            // el ^ indica el inicio del texto
+            // el \\d{8} indica que deben haber 8 digitos al principio
+            // el - quiere decir que debe haber un guion
+            // y \\d$ quiere decir que debe haber un digito y el $ indica el fin del texto
+            if (!inputText.matches("^\\d{8}-\\d$")) {
+                etRut.setError("Debe seguir el formato 12345678-9");
+                return false;
+            }
         }
 
         if (etDescripcion.length() == 0) {
