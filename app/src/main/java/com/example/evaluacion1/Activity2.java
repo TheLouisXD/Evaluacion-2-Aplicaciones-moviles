@@ -1,6 +1,8 @@
 package com.example.evaluacion1;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +12,25 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Activity2 extends AppCompatActivity {
 
+    Button bSalir;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_2);
+
+        bSalir = findViewById(R.id.btnSalir);
+
+        bSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity2.this.finish();
+                System.exit(0);
+            }
+        });
+
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_2);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

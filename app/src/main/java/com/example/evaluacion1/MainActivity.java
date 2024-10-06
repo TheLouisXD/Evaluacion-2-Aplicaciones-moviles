@@ -1,5 +1,6 @@
 package com.example.evaluacion1;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -46,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 isAllFieldsCheked = CheckAllFields();
 
                 if (isAllFieldsCheked) {
-                    Intent i = new Intent(MainActivity.this, Activity2.class);
-                    startActivity(i);
+                    showConfirmationDialog();
                 }
             }
         });
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
+
         // Obtenemos la fecha y hora del dispositivo
         TextView currentFecha = findViewById(R.id.fecha);
 
@@ -75,6 +76,19 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+
+    private void showConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Confirmación")
+                .setMessage("¿Deseas enviar el reporte?")
+                .setPositiveButton("Si", (dialog, which) -> {
+                    Intent i = new Intent(MainActivity.this, Activity2.class);
+                    startActivity(i);
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     // Validacion de inputs
